@@ -9,26 +9,20 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-
-@WebServlet(name = "Login" , value = "/login-disp")
-public class Login extends HttpServlet {
+@WebServlet(name = "WeclomeServlet", value = "/welcome-servlet-dispatch")
+public class WelcomeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
         try (PrintWriter writer = response.getWriter()) {
             String username = request.getParameter("username");
-            String password = request.getParameter("password");
-
-            if (username != null && password != null) {
-                if (username.equalsIgnoreCase("parsa") && password.equalsIgnoreCase("hello")) {
-                    request.setAttribute("user", "parsa");
-                    request.getRequestDispatcher("/welcome-servlet-dispatch").include(request,response);
-                } else {
-                    writer.println("<h2 style='color:red;'> username or password is wrong </h2>");
-                    request.getRequestDispatcher("logincookie.html").include(request, response);
-                }
-            } else {
-                writer.println("<h2 style='color:red;'> username or password is wrong </h2>");
-                request.getRequestDispatcher("logincookie.html").include(request, response);
+            if (username != null) {
+                writer.println("<!DOCTYPE html>");
+                writer.println("<html>");
+                writer.println("<head><title> title </title></head>");
+                writer.println("<body>");
+                writer.println("<h1 style='color:red;'> Welcome " + username + "</h1>");
+                writer.println("</body>");
+                writer.println("</html>");
             }
         }
     }
@@ -44,9 +38,8 @@ public class Login extends HttpServlet {
         processRequest(req,resp);
     }
 
-
     @Override
     public String getServletInfo() {
-        return "Login Dispatcher";
+        return "Hello Servlet";
     }
 }
