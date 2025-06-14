@@ -23,7 +23,7 @@ public class FirstCookie extends HttpServlet {
             writer.println("<head><title> First Cookie </title></head>");
             writer.println("<body>");
             writer.println("<h1> your name is " + name + "</h1>");
-            writer.println("<a href='/second-cookie'> Second cookie page </a>");
+            writer.println("<a href='/exam_preparation_war_exploded/second-cookie'> Second cookie page </a>");
             writer.println("</body>");
             writer.println("</html>");
         }
